@@ -47,7 +47,6 @@ RUN apt -y full-upgrade && apt install -y \
   firefox \
   less \
   locales \
-  openssh-server \
   pulseaudio \
   sudo \
   supervisor \
@@ -85,12 +84,9 @@ RUN mkdir /var/run/dbus && \
   sed -i "s/xrdp\/xorg/xorg/g" /etc/xrdp/sesman.ini && \
   locale-gen en_US.UTF-8 && \
   echo "xfce4-session" > /etc/skel/.Xclients && \
-  cp -r /etc/ssh /ssh_orig && \
-  rm -rf /etc/ssh/* && \
   rm -rf /etc/xrdp/rsakeys.ini /etc/xrdp/*.pem
 
 # Docker config
-VOLUME ["/etc/ssh","/home"]
-EXPOSE 3389 22 9001
+EXPOSE 3389 9001
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
 CMD ["supervisord"]
