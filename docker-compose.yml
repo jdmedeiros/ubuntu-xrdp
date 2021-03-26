@@ -2,6 +2,7 @@ version: '3.5'
 services:
   terminalserver:
     build: ./
+    network: host
     image: danielguerra/ubuntu-xrdp
     container_name: uxrdp
     hostname: terminalserver
